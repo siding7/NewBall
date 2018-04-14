@@ -1,0 +1,57 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+  <body>
+    <div class='pane'>
+      <div class='header'>
+        <h1>Wildcat Games</h1>
+        {%if 'username' not in session %}
+        <a href="{{url_for('showLogin')}}">Click Here to Log in</a>
+        {% else %}
+        <a href="{{url_for('gdisconnect')}}">Disconnect</a>
+        {% endif %}
+      </div>
+
+      <br /><br />
+
+      <a class='new' href = '{{url_for('newYear')}}'>Add New Year</a>
+      <div class='flash'>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+              <ul>
+                  {% for message in messages %}
+                    <li> <strong> {{message}}</strong></li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+
+  </br>
+
+    {% for year in yearmonths %}
+
+    <div class = 'opponentAndDesc'>
+      <p>
+
+        <a class='yearmonth' href="{{url_for('yearGms', year_id=year.id)}}"><span>{{year.yearmonth}}</span></a>
+
+      </p>
+
+        <div class='editdeletepane'>
+    <a href='{{url_for('editYear', year_id = year.id)}}'>Edit</a>
+  </br>
+          <a href='{{url_for('deleteYear', year_id = year.id)}}'>Delete</a>
+        </div>
+  </br>
+
+    {% endfor %}
+
+    </div>
+  </div>
+
+  </body>
+
+</html>

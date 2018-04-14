@@ -1,0 +1,21 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+<h1> Edit Year </h1>
+
+<form action="{{ url_for('editYear', year_id = year_id)}}" method = 'POST'>
+
+<dl>
+  <dt>Yearmonth:</dt>
+    <dd><input type='text' size='38' name='yearmonth' placeholder = '{{i.yearmonth}}'></dd>
+</dl>
+
+    <input type='submit' value='Edit'>
+
+  <a href = '{{url_for('years')}}'>Cancel</a>
+</form>
+
+</body>
+</html>

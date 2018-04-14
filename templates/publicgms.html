@@ -1,0 +1,59 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+  <div class='pane'>
+    <div class='header'>
+      <h1>{{year.yearmonth}}
+        <figure>
+          <img src="{{creator.picture}}">
+          <figcaption>{{creator.name}}</figcaption>
+        </figure>
+      </h1>
+    </div>
+
+    <div class='flash'>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+          <ul>
+            {% for message in messages %}
+              <li> <strong> {{message}}</strong></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+    </br>
+    {% if games !=[] %}
+      {% for gms in games %}
+
+
+          <p>
+            <a class='opponent' href="{{url_for('gmsDesc', year_id=year.id, gms_id=gms.id)}}"><span>{{gms.opponent}}</span></a>
+
+          </p>
+
+
+      {% endfor %}
+
+    {% else %}
+
+        <p> There are no games for this year.
+        </br>
+        </p>
+
+    {% endif %}
+
+
+
+        <a class = 'yearmonth' href = '{{url_for('years')}}'> Return to Years </a>
+
+  </div>
+
+
+
+  </body>
+
+</html>

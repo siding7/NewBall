@@ -1,0 +1,15 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+
+  <h1> Are you sure you want to delete {{i.yearmonth}}? </h1>
+
+  <form action="{{url_for('deleteYear', year_id=i.id)}}" method = 'POST'>
+
+  <input type='submit', value = 'Delete'>
+
+  </form>
+
+  <a href = '{{url_for('years')}}'>Cancel</a>

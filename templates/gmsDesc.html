@@ -1,0 +1,44 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+  <div class='pane'>
+    <div class='header'>
+      <h1>{{year.yearmonth}}</h1>
+      <br/><br />
+      <h2>{{game.opponent}}</h2>
+    </div>
+
+    <div class='flash'>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+          <ul>
+            {% for message in messages %}
+              <li> <strong> {{message}}</strong></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+    </br>
+    <p>
+    <div class='description'>{{game.description}}</div>
+    </p>
+    <div class='editdeletepane'>
+      <a href='{{url_for('editGame', year_id = year.id, gms_id=game.id)}}'>Edit</a>
+      </br>
+      <a href='{{url_for('clearDesc', year_id = year.id, gms_id = game.id)}}'>Delete</a>
+    </div>
+    </br>
+
+        <a class = 'opponent' href = '{{url_for('yearGms', year_id = year.id)}}'> Return to Year </a>
+
+  </div>
+
+
+
+  </body>
+
+</html>

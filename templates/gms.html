@@ -1,0 +1,63 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+  <div class='pane'>
+    <div class='header'>
+      <h1>{{year.yearmonth}}</h1>
+    </div>
+
+    <div class='flash'>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+          <ul>
+            {% for message in messages %}
+              <li> <strong> {{message}}</strong></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+    </br>
+    {% if games !=[] %}
+      <a class='new' href = '{{url_for('newGame', year_id = year.id)}}'>Add New Game</a>
+      </br></br>
+
+      {% for gms in games %}
+
+
+          <p>
+            <a class='opponent' href="{{url_for('gmsDesc', year_id=year.id, gms_id=gms.id)}}"><span><h2>{{gms.opponent}}</h2></span></a>
+          </p>
+          <div class='editdeletepane'>
+            <a href='{{url_for('editGame', year_id = year.id, gms_id=gms.id)}}'>Edit</a>
+            &nbsp&nbsp
+            <a href='{{url_for('deleteGame', year_id = year.id, gms_id = gms.id)}}'>Delete</a>
+          </div>
+
+
+
+      {% endfor %}
+
+    {% else %}
+
+        <p> There are no games for this year.
+        </br>
+          <a class='new' href = '{{url_for('newGame', year_id = year.id)}}'>Add New Game</a>
+        </p>
+
+    {% endif %}
+
+
+
+        <a class = 'yearmonth' href = '{{url_for('years')}}'> Return to Years </a>
+
+  </div>
+
+
+
+  </body>
+
+</html>
